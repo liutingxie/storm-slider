@@ -1,0 +1,326 @@
+.storm-popup {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 9999993;
+  box-shadow: 0 5px 30px -5px #000000;
+}
+.storm-container {
+  position: relative;
+  max-width: none;
+  visibility: visible;
+}
+.storm-container button {
+  background-color: transparent;
+  box-sizing: content-box;
+}
+.storm-container .storm-inner-parent {
+  position: relative;
+}
+.storm-container .storm-inner-parent .storm-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.storm-container .storm-inner-parent .storm-inner img {
+  max-width: none !important;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-layer {
+  position: absolute;
+  display: none;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-slide {
+  position: absolute;
+  display: none;
+  overflow: hidden;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-slide * {
+  position: absolute;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-link {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 110;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container {
+  position: absolute;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-curtile,
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-nexttile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-container-tiles {
+  position: relative;
+  float: left;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-container-tiles .storm-curtile,
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-container-tiles .storm-nexttile {
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  bottom: auto !important;
+  right: auto !important;
+  backface-visibility: hidden;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-inner-container-tiles img {
+  background: none !important;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-3d-container {
+  position: relative;
+  perspective: 500px;
+  overflow: visible;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-3d-container .storm-3d-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-inner-container .storm-3d-container .storm-3d-box div {
+  overflow: hidden;
+  position: absolute;
+  transform-style: preserve-3d;
+  background-color: #888;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-overflow-hidden {
+  overflow: hidden;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-active {
+  display: block !important;
+}
+.storm-container .storm-inner-parent .storm-inner .storm-animating {
+  display: block !important;
+}
+.storm-container .storm-inner-parent .storm-nav-prev {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  font: 30px/40px dashicons;
+  cursor: pointer;
+  text-align: center;
+}
+.storm-container .storm-inner-parent .storm-nav-prev:before {
+  content: "\f341";
+  color: black;
+  margin-right: 3px;
+}
+.storm-container .storm-inner-parent .storm-nav-prev:hover {
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-prev:hover:before {
+  color: white;
+}
+.storm-container .storm-inner-parent .storm-nav-next {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -20px;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  font: 30px/40px dashicons;
+  cursor: pointer;
+  text-align: center;
+}
+.storm-container .storm-inner-parent .storm-nav-next:before {
+  content: "\f345";
+  color: black;
+  margin-left: 3px;
+}
+.storm-container .storm-inner-parent .storm-nav-next:hover {
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-next:hover:before {
+  color: white;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper {
+  position: relative;
+  bottom: 40px;
+  text-align: center;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper a {
+  display: inline-block;
+  text-decoration: none;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-start {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 15px;
+  font: 20px/30px dashicons;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-start:before {
+  content: "\f522";
+  color: black;
+  padding-left: 3px;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-stop {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 15px;
+  font: 20px/30px dashicons;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-stop:before {
+  content: "\f523";
+  color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-startStop-active {
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-startStop-active:before {
+  color: white;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-thumb-wrapper {
+  vertical-align: text-bottom;
+  margin-left: 5px;
+  line-height: 20px;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-thumb-wrapper .storm-thumb-img {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid black;
+  background-color: white;
+  margin-right: 5px;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-thumb-wrapper .storm-thumb-img:hover {
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-wrapper .storm-thumb-wrapper .storm-thumb-active {
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-nav-hide {
+  display: none;
+}
+.storm-container .storm-inner-parent .storm-bar-timer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10px;
+  background-color: black;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box !important;
+  display: none;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer * {
+  box-sizing: border-box !important;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-left {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-left .storm-circletimer-rotate {
+  left: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-left .storm-circletimer-rotate .storm-circletimer-hider {
+  left: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-left .storm-circletimer-rotate .storm-circletimer-hider .storm-circletimer-half {
+  left: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  overflow: hidden;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-right .storm-circletimer-rotate {
+  right: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-right .storm-circletimer-rotate .storm-circletimer-hider {
+  right: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-right .storm-circletimer-rotate .storm-circletimer-hider .storm-circletimer-half {
+  right: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-center {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: 4px solid white;
+  border-radius: 50%;
+  opacity: .2;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-rotate {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-rotate .storm-circletimer-hider {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.storm-container .storm-inner-parent .storm-circletimer-timer .storm-circletimer-rotate .storm-circletimer-hider .storm-circletimer-half {
+  position: absolute;
+  top: 0;
+  width: 200%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid black;
+}
+.storm-container .storm-thumb-list {
+  position: relative;
+  overflow: hidden;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90px;
+  z-index: 999999;
+}
+.storm-container .storm-thumb-list .storm-thumbimg-container {
+  position: relative;
+}
+.storm-container .storm-thumb-list .storm-thumbimg-container .storm-thumbimg-frame {
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  margin-right: 5px;
+  opacity: 0.5;
+  z-index: 1000000;
+}
+.storm-container .storm-thumb-list .storm-thumbimg-container .storm-thumbimg-frame:hover {
+  opacity: 1;
+}
+.storm-container .storm-thumb-list .storm-thumbimg-container .storm-thumbimg-active {
+  opacity: 1;
+}

@@ -1,0 +1,343 @@
+/* jQuery Ui tooltip custom style */
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	border-radius: 5px;
+	color: white;
+	background: @dark-color;
+	text-align: justify;
+}
+
+
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    background: @dark-color;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+.arrow.top:after {
+	bottom: -20px;
+	top: auto;
+}
+/* */
+
+a {
+	text-decoration: none;
+}
+
+.btn {
+	 display: inline-block;
+	 color: @white-color;
+	 background-color: @text-color;
+	 height: 28px;
+	 line-height: 28px;
+	 padding: 0 20px !important;
+	 cursor: pointer;
+	 border-radius: 2px;
+	 text-align: center;
+	 font-weight: normal;
+	 border: none;
+	 box-shadow: 0 2px 0 darken(@text-color, 5%);
+
+	&:hover {
+		color: @white-color;
+		background-color: lighten(@text-color, 10%);
+	 	box-shadow: 0 2px 0 lighten(@text-color, 5%);
+	}
+
+	&:focus {
+		outline: none;
+		background-color: lighten(@text-color, 10%);
+	 	box-shadow: 0 2px 0 lighten(@text-color, 5%);
+		color: @white-color;
+	}
+}
+
+.playing {
+	background-color: @green-color !important;
+	box-shadow: 0 2px 0 darken(@green-color, 5%) !important;
+
+	&:hover {
+		background-color: lighten(@green-color, 10%) !important;
+		box-shadow: 0 2px 0 lighten(@green-color, 5%) !important;
+	}
+
+	&:focus {
+		background-color: lighten(@green-color, 10%) !important;
+		box-shadow: 0 2px 0 lighten(@green-color, 5%) !important;
+	}
+}
+
+.transition-build-left {
+	float: left;
+	width: 50%;
+	border-right: 1px solid @underline-color;
+	box-sizing: border-box;
+
+	table {
+		tbody {
+			&:last-child {
+				tr {
+					td {
+						border-bottom: 0px solid @underline-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+.transition-build-right {
+	float: right;
+	width: 50%;
+
+	table {
+		tbody {
+			&:last-child {
+				tr {
+					td {
+						border-bottom: 1px solid @underline-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+.storm-no-transition-notification {
+	height: 700px;
+	text-align: center;
+	padding-top: 20px;
+	background-color: @wordpress-bakcground-color;
+	h1 {
+		margin-top: 0;
+	}
+}
+
+/* Less Variables */
+
+@border: #4599c8; /* Border Color*/
+@text-color: #00a0d2;
+@white-color: #fff;
+@dark-color: #252525;
+@underline-color: #d7d7d7;
+@background-color: #eee;
+@from-top-color: #f8f8f8;
+@from-bottom-color: #f6f6f6;
+@yellow-color: #e85c33;
+@green-color: #9acd32;
+@wordpress-bakcground-color: #f1f1f1;
+
+/* Template Ui */
+
+.template-container {
+
+	input[type="text"] {
+		width: 100%;
+	}
+
+	margin: 10px 20px 0 2px;
+	border: 1px solid @underline-color;
+	background-color: @white-color;
+
+	.transition-item {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+
+		td {
+			font: normal normal normal 13px/16px Arial, serif;
+		}
+	}
+
+	h3 {
+		margin: 0;
+
+		.header {
+			line-height: 38px;
+			margin: 0;
+			padding: 0 10px;
+			font-size: 13px;
+			border-bottom: 1px solid @underline-color;
+
+			p {
+				margin: 0;
+				height: 38px;
+				line-height: 38px;
+				float: right;
+				font-weight: normal;
+
+				.transition-template-select {
+					margin-bottom: 5px;
+					width: 160px;
+				}
+
+				.add-slide-icon {
+					margin-top: 11px;
+					i {
+						margin-top: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	table {
+		width: 100%;
+		border-spacing: 0;
+		select {
+			width: 100%;
+		}
+
+		.template-collapsed {
+			display: none;
+		}
+
+		thead {
+			tr {
+				width: 100%;
+				td {
+					border-bottom: 1px solid @underline-color;
+					padding: 4px 10px;
+					background-color: @wordpress-bakcground-color;
+
+					.transition-checkbox {
+						float: right;
+						margin: 0;
+					}
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				width: 100%;
+
+				td {
+					border-bottom: 1px solid @underline-color;
+					padding: 5px;
+
+					.transition-tag {
+						li {
+							background-color: @yellow-color;
+							color: @white-color;
+							float: left;
+							padding: 0 5px;
+							margin: 0 10px 10px 0;
+							border-radius: 3px;
+							input {
+								width: 40px;
+								background-color: transparent;
+								border: 0;
+								padding: 3px 4px;
+								text-align: center;
+
+								&:focus {
+									border: 0;
+									outline: none !important;
+									background-color: @white-color;
+								}
+							}
+							a  {
+								&:focus {
+									box-shadow: none;
+									i {
+										color: @dark-color;
+									}
+								}
+
+								i {
+									cursor: pointer;
+									color: @white-color;
+									margin-top: 2px;
+								}
+							}
+						}
+					}
+
+					.transition-property {
+						text-align: right;
+						clear: both;
+						select {
+							width: 100px;
+						}
+					}
+
+					.remove-option {
+						float: right;
+					}
+				}
+
+				.right {
+					width: 80px;
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.storm-builder-preview {
+		width: 300px;
+		height: 150px;
+		// text-align: center;
+		margin: 10px auto;
+
+		.transitionpreview {
+			margin: 0px auto;
+		}
+	}
+
+	.storm-builder-preview-button {
+		text-align: center;
+		margin: 10px 0;
+	}
+}
+
+.transition-save {
+	margin: 20px 0;
+	.btn {
+		height: 44px;
+		line-height: 44px;
+		width: 130px;
+		&:focus {
+			color: @dark-color;
+		}
+	}
+
+	.saving {
+		background-color: @yellow-color;
+		box-shadow: 0 2px 0 darken(@yellow-color, 10%);
+	}
+
+	.saved {
+		background-color: @green-color;
+		box-shadow: 0 2px 0 darken(@green-color, 10%);
+	}
+}

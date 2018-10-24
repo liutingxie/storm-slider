@@ -1,0 +1,262 @@
+/* jQuery Ui tooltip custom style */
+.ui-tooltip {
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+  border-radius: 5px;
+  color: white;
+  background: #252525;
+  text-align: justify;
+}
+.arrow {
+  width: 70px;
+  height: 16px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  margin-left: -35px;
+  bottom: -16px;
+}
+.arrow.top {
+  top: -16px;
+  bottom: auto;
+}
+.arrow.left {
+  left: 20%;
+}
+.arrow:after {
+  content: "";
+  position: absolute;
+  background: #252525;
+  left: 20px;
+  top: -20px;
+  width: 25px;
+  height: 25px;
+  box-shadow: 6px 5px 9px -9px #000000;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.arrow.top:after {
+  bottom: -20px;
+  top: auto;
+}
+/* */
+a {
+  text-decoration: none;
+}
+.btn {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #00a0d2;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 20px !important;
+  cursor: pointer;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: normal;
+  border: none;
+  box-shadow: 0 2px 0 #008db9;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: #06c4ff;
+  box-shadow: 0 2px 0 #00b3eb;
+}
+.btn:focus {
+  outline: none;
+  background-color: #06c4ff;
+  box-shadow: 0 2px 0 #00b3eb;
+  color: #ffffff;
+}
+.playing {
+  background-color: #9acd32 !important;
+  box-shadow: 0 2px 0 #8bb92d !important;
+}
+.playing:hover {
+  background-color: #aed75b !important;
+  box-shadow: 0 2px 0 #a4d247 !important;
+}
+.playing:focus {
+  background-color: #aed75b !important;
+  box-shadow: 0 2px 0 #a4d247 !important;
+}
+.transition-build-left {
+  float: left;
+  width: 50%;
+  border-right: 1px solid #d7d7d7;
+  box-sizing: border-box;
+}
+.transition-build-left table tbody:last-child tr td {
+  border-bottom: 0px solid #d7d7d7;
+}
+.transition-build-right {
+  float: right;
+  width: 50%;
+}
+.transition-build-right table tbody:last-child tr td {
+  border-bottom: 1px solid #d7d7d7;
+}
+.storm-no-transition-notification {
+  height: 700px;
+  text-align: center;
+  padding-top: 20px;
+  background-color: #f1f1f1;
+}
+.storm-no-transition-notification h1 {
+  margin-top: 0;
+}
+/* Less Variables */
+/* Border Color*/
+/* Template Ui */
+.template-container {
+  margin: 10px 20px 0 2px;
+  border: 1px solid #d7d7d7;
+  background-color: #ffffff;
+}
+.template-container input[type="text"] {
+  width: 100%;
+}
+.template-container .transition-item {
+  display: none;
+}
+.template-container .transition-item.active {
+  display: block;
+}
+.template-container .transition-item td {
+  font: normal normal normal 13px/16px Arial, serif;
+}
+.template-container h3 {
+  margin: 0;
+}
+.template-container h3 .header {
+  line-height: 38px;
+  margin: 0;
+  padding: 0 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #d7d7d7;
+}
+.template-container h3 .header p {
+  margin: 0;
+  height: 38px;
+  line-height: 38px;
+  float: right;
+  font-weight: normal;
+}
+.template-container h3 .header p .transition-template-select {
+  margin-bottom: 5px;
+  width: 160px;
+}
+.template-container h3 .header p .add-slide-icon {
+  margin-top: 11px;
+}
+.template-container h3 .header p .add-slide-icon i {
+  margin-top: 10px;
+}
+.template-container table {
+  width: 100%;
+  border-spacing: 0;
+}
+.template-container table select {
+  width: 100%;
+}
+.template-container table .template-collapsed {
+  display: none;
+}
+.template-container table thead tr {
+  width: 100%;
+}
+.template-container table thead tr td {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 4px 10px;
+  background-color: #f1f1f1;
+}
+.template-container table thead tr td .transition-checkbox {
+  float: right;
+  margin: 0;
+}
+.template-container table tbody tr {
+  width: 100%;
+}
+.template-container table tbody tr td {
+  border-bottom: 1px solid #d7d7d7;
+  padding: 5px;
+}
+.template-container table tbody tr td .transition-tag li {
+  background-color: #e85c33;
+  color: #ffffff;
+  float: left;
+  padding: 0 5px;
+  margin: 0 10px 10px 0;
+  border-radius: 3px;
+}
+.template-container table tbody tr td .transition-tag li input {
+  width: 40px;
+  background-color: transparent;
+  border: 0;
+  padding: 3px 4px;
+  text-align: center;
+}
+.template-container table tbody tr td .transition-tag li input:focus {
+  border: 0;
+  outline: none !important;
+  background-color: #ffffff;
+}
+.template-container table tbody tr td .transition-tag li a:focus {
+  box-shadow: none;
+}
+.template-container table tbody tr td .transition-tag li a:focus i {
+  color: #252525;
+}
+.template-container table tbody tr td .transition-tag li a i {
+  cursor: pointer;
+  color: #ffffff;
+  margin-top: 2px;
+}
+.template-container table tbody tr td .transition-property {
+  text-align: right;
+  clear: both;
+}
+.template-container table tbody tr td .transition-property select {
+  width: 100px;
+}
+.template-container table tbody tr td .remove-option {
+  float: right;
+}
+.template-container table tbody tr .right {
+  width: 80px;
+  text-align: right;
+}
+.template-container .storm-builder-preview {
+  width: 300px;
+  height: 150px;
+  margin: 10px auto;
+}
+.template-container .storm-builder-preview .transitionpreview {
+  margin: 0px auto;
+}
+.template-container .storm-builder-preview-button {
+  text-align: center;
+  margin: 10px 0;
+}
+.transition-save {
+  margin: 20px 0;
+}
+.transition-save .btn {
+  height: 44px;
+  line-height: 44px;
+  width: 130px;
+}
+.transition-save .btn:focus {
+  color: #252525;
+}
+.transition-save .saving {
+  background-color: #e85c33;
+  box-shadow: 0 2px 0 #d04118;
+}
+.transition-save .saved {
+  background-color: #9acd32;
+  box-shadow: 0 2px 0 #7ba428;
+}

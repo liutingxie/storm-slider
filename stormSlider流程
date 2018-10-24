@@ -1,0 +1,243 @@
+1: 第一次调用：就创建一个新的slider对象
+2: 运行$this.load()
+3: 运行$this.init()
+4: 这时$this.global.animateFirstSlide为真，$this.global.autoStart为假，调用$this.next(), $this.global.curSliderIndex为slider的总数, 所以肯定不小于$this.global.sliderNum, 所以index变量等于1。
+5: 运行$this.change(index), 这时的$this.global.nextSliderIndex等于1, 所以$this.gloabl.nextSlider就是第一个slider。
+6: 运行$this.isPreload(slider, func)
+7: 运行$this.response(slider, func), 这时index为0的slider为第一张图，所有slider和subLayer的宽高都在$this.resizeSlider()函数下配置好, 但display都为none。
+8: 执行$this.response(slider, func) 的参数func()
+9: $this.animate()运行, 添加class名storm-animating给$this.global.nextSlider，即为第一个lsider。
+10: 这时$this.option.animateFirstSlide为真，$this.global.firstSlideAnimated为假，延迟调用setClass(), 调用$this.animate()的内部函数initPlay()
+11：调用$this.animate()的内部函数initPlay()下的内部函数i()
+12: 调用$this.start()，$this.global.autoSliderShow为假, $this.global.isAnimating为假,$this.global.isLoading为假，$this.global.autoSliderShow赋值为真，调用$this.timer()
+13: 运行$this.timer()，调用$this.start(), 如果$this.global.barTimer为真，调用$this.barTimer()函数,如果$this.global.circleTimer为真，调用$this.circleTimer()函数;
+14: 运行$this.start(), $this.global.autoSliderShow为真, $this.global.prevNext为'next'
+15: 调用$this.next()
+16: 调用$this.change(index)
+17: 调用$this.isPreload(slider, func)
+18: 调用$this.response(slider, func)
+19: 执行从$this.change传递的参数func()，即$this.animate()函数
+20: 运行$this.animate()
+21: $this.option.animateFirstSlide为真，$this.global.firstSlideAnimated为真，调用$this.animate()的内部函数play(type, options)
+22: 运行play(type, options)函数，最后调用$this.animate的内部函数setClass()
+23: setClass()调用$this.timer()。
+24: 运行$this.timer()，调用$this.start(), 即回到第13步，形成循环。
+
+
+$this.load():
+用$.extend()函数把传递给插件的参数转为插件对象参数。
+
+$this.init():
+初始化各项参数。
+
+$tthis.resize():
+调用$this.response()重置curSlidr的样式。
+
+$this.timer():
+计时器，关于滑块(slider)的setTimeout和clearTimeout计时。
+
+$this.stop():
+暂停滑块(slider)的动画。
+
+$this.forcestop():
+清除滑块(slider)的插件对象。
+
+$this.prev():
+调整滑块(slider)的运动方向为：上一个滑块(slider)。
+
+$this.next():
+调整滑块(slider)的运动方向为：下一个滑块(slider)。
+
+$this.change(index):
+真正改变方向的函数，传递$this.global.nextSlider和 function({$this.animate()})到$this.isPreload(slider, func), 然后执行$this.isPreload()。
+
+$this.isPreload():
+不同条件下调用$this.response(slider, func)。
+
+$this.response(slider, func):
+设置滑块(slider)的visibility和display样式，slider的子元素的各种样式。
+
+$this.resizeSlider():
+设置滑块(slider)和当前图片还有下个图片的宽高样式, 设置响应式下sublayer的字体大小，top，left等。
+
+$this.animate():
+创建新的div标签存放真正的动画滑块，然后使它运行。
+
+
+$this.animate()中的自定义函数:
+
+	setClass(): 添加storm-preloaded和strom-active类，然后在不同条件下触发$this.timer()或者$this.response(slider, func)。
+	curSliderAnimate(): 设置$this.global.curSlider的animate()，完成后调用setClass()。
+	nextSliderAnimate(): 设置$this.gloabl.nextSlider的animate()。
+	subLayerTweenTo(n): 设置layer的greensock的to()。
+	subLayerTweenFormTo(): 设置layer的greensock的formTo()。
+	setTransitionType(type, contexts): 获取transition类型，传递给play(typs, options)。
+	checkTransitionType(): 检查transition类型是3d还是2d， 传递给setTransitionType(type, contexts)。
+	checkCustomTransitionType(): 检查transition是否是自定义的类型，传递给参数给setTranstitionType(type, contexts)。
+	getEaseEffect(easing): 转化easing为适合greensock的easing格式。
+	play(type, options): 根据row和col设定多个div标签添加到inner-container类的div标签中。div标签设置样式， 添加自定义样式的img标签。隐藏$this.global.curSlider和$this.global.nextSlider, 显示inner-container中的inner-curtile。然后用greensock的to()和fromTo()执行动画，每个slider结束时调用subLayerTweenTo(n), 实现layer的进入动画效果，在下个slider的动画开始前， 调用subLayerTweenFormTo()，实现layer退出的动画效果。最后调用setClass()。
+	initPlay(): 设置下个slider的样式，判断条件调用$this.start();
+
+$this.animate()中的条件语句根据条件调用函数，完成整个流程。
+
+$this.load()详细：
+	把传递过来的参数转化为slider对象的全局变量。
+	全局变量$this.global.ie78为真，则$this.option.lazyLoad赋值为假。
+	如果transitionDefaultData不等于undefined， 就把transitionDefaultData赋值给全局变量$this.transitionDefaultData。
+	如果transitionCustomData不等于undefined， 就把transitionCustomData赋值给全局变量$this.transitionCustomtData。
+	调用$this.init()函数。
+
+$this.init()详细：
+	传递给slider对象的元素el找到storm-layer类时，去掉storm-layer类后添加storm-slide类。
+
+	元素el找到storm-slide时重新在找到的div类标签外包裹新的类为storm-inner的div标签。
+
+	循环添加（storm-slide-索引+1） 的类给storm-slide类所在的div标签。
+
+	把元素el的原始宽高赋值给全局变量$this.global.width和$this.gloabl.height。
+
+	把Jquery对象storm-inner赋值给全局变量$this.global.inner。
+
+	把包含有类storm-slide的div标签数量赋值给全局变量$this.global.sliderNum。
+	全局变量randomSliderShow为真时执行下个计算数, $this.global.sliderNum大于2时把值‘random’赋值给全局变量$this.option.firstSlide，小于2时全局变量randomSliderShow为假，且如果$this.option.firstSlide等于'random'，才执行随机选取一个大于0小于等于$this.global.sliderNum的数赋值给全局变量$this.option.firstSlide。
+	animateFirstSlide为真执行下一个计算数，如果$this.global.firstSlide减一等于零，把$this.global.sliderNum赋值给它，否则把$this.global.firstSlide减一赋值给它。
+	把$this.global.firstSlide的值赋值给全局变量$this.global.curSliderIndex。
+	把$this.global.curSliderIndex所处的jquery对象赋值给$this.global.curSlider。
+
+	预先定义的全局变量$this.option.showBarTimer为真时，添加一个包含类storm-bar-timer的div标签到jquery对象$this.global.inner, 之后把类storm-bar-timer所处的jquery对象赋值给$this.global.barTimer。
+	预先定义的全局变量$this.option.showCircleTimer和$this.global.ie78都为真时，执行下一个计算数。即添加一个类storm-circletimer-timer的div标签到$this.global.inner，然后赋值给jquery对象$this.global.circleTimer。jquery对象$this.global.circleTimer添加3个子元素，来存放circleTimer的样式和所在位置。
+	添加一个包含类storm-loading-container的设置样式div标签到元素el下，并赋值给全局变量jquery对象$this.global.loadingContainer。
+	添加一个包含类storm-loading-indicate的div标签到jquery对象$this.global.loadingContaienr下。
+	循环类storm-slide和storm-lay开头的类所拥有的宽高等样式和data-option数据用jquery方法data()存储到$(this)。
+	$this.global.showSlider赋值给真。
+	全局变量$this.global.animateFirstSlide为真时判断$this.global.autoStart的真假。如果$this.global.autoStart为真，$this.global.autoSliderShow赋值为真，且找到storm-nav-start类时添加新类storm-nav-start-active，如果$this.global.autoStart为假，找到jquery对象为类storm-nav-stop的div标签添加新类storm-nav-stop-active，调用$this.next()函数。$this.global.animateFirstSlide为假时，如果$this.global.curSlide[0]的typeof不是undefined, 调用$this.isPreload(slider, func)函数;
+
+$this.resize()详细:
+	赋值$this.global.resize为真。
+	$this.global.isAnimating为假时调用$this.isPreload(slider, func);
+
+$this.start()详细:
+	$this.global.autoSliderShow为真时，判断$this.global.prevNext是否等于'prev'，等于时就调用$this.prev()函数, 不等于时调用$this.next()函数。
+	$this.global.autoSliderShow为假时，赋值$this.global.autoSliderShow为真，且$this.global.isAnimateing和$this.global.isLoading都为假时调用$this.timer()函数。
+	元素el下发现storm-nav-start类就添加新类storm-nav-start-active。
+	元素el下发现storm-nav-stop类就删除类storm-nav-stop-active。
+
+$this.timer()详细：
+	定义局部变量defaultSlideDelay。
+	如果storm-active类存储有数据storm，把$this.slideTransitions.slideDelay赋值给defaultDelay。否则把$this.option.slideDelay赋值给defaultSlideDelay。
+	如果storm-active类存储有数据slideDelay，把数据解析成整数赋值给局部变量slideDelay。否则把局部变量defaultSlideDelay的值赋值给slideDelay。
+
+	如果$this.option.animateFirstSlide为真和storm-avtive类存储有数据slideDirections为假时，把$this.option.firstSlide减一的storm-slide索引Jquery对象的数据slideDelay赋值给变量delay。
+	如果delay为真，把delay赋值给slideDelay，否则把defaultSlideDelay赋值给slideDelay。
+
+	清除$this.global.slideTimer。
+	如果$this.global.pauseSlideTime为真，$this.global.startSlideTime为假时把当前距1970年1月1日的毫秒值赋值$this.global.startSlideTime，如果$this.global.startSlideTime大于$this.global.pauseSlideTime, 把当前距1970年1月1日的毫秒值赋值给$this.global.pauseSlideTime。$this.global.curSlideTime为假时，把局部变量slideDelay赋值给$this.global.curSlideTime, $this.global.curSlideTime减去$this.global.pauseSlideTime和$this.global.curSlideTime差值后赋值给$this.global.curSlideTime。$this.global.pauseSlideTime赋值为假，$this.global.startSlideTime赋值为当前距1970年1月1日的毫秒值。
+	如果$this.global.pauseSlideTime为假，把slideDelay赋值给$this.global.curSlideTime, $this.global.startSlideTime赋值为距当前1970年1月1日的毫秒值。
+	把$this.global.curSlideTime解析成整数赋值给自身。
+	定义一个setTimeout方法赋值给$this.global.slideTimer, 延迟$this.global.curSlideTime毫秒后执行，函数内容为：设置$this.global.startSlideTime，$this.global.pauseSlideTime, $this.global.curSlideTime为假。调用$this.start()函数。
+
+	如果$this.global.barTimer为真，调用$this.barTimer()函数。
+	如果$this.global.circleTimer为真，调用$this.circleTimer()函数。
+
+$this.prev()详细:
+	$this.global.curSliderIndex小于2时则把$this.global.sliderNum赋值给局部变量index，大于2时则把$this.global.curSliderIndex减一赋值给局部变量index。
+	赋值'prev'给全局变量$this.global.prevNext。
+	调用$this.change(index)函数。
+
+$this.next()详细：
+	$this.global.curSliderIndex小于$this.global.sliderNum时则把$this.global.curSliderIndex加一赋值给局部变量index，大于$this.global.SliderNum时则把1赋值给局部变量index。
+	赋值'next'给全局变量$this.global.prevNext。
+	调用$this.change(index)函数。
+
+$this.change(index)详细:
+	设置$this.global.startSlideTime, $this.global.pausedSlideTime, $this.global.curSlideTime，都为假。
+
+	如果$this.option.showBarTimer和$this.barTimerTl都为真，设置$this.barTimerTl为相反，即开始的位置，效果时间为0.35秒。
+	如果$this.option.showCircleTimer和$this.circleTimerTl都为真，设置$this.circleTimerTl为相反，即开始的位置，效果时间为0.35秒。
+
+	把参数index赋值给$this.global.nextSliderIndex。
+	把$this.global.nextSliderIndex所在的Jquery对象赋值给$this.global.nextSlider。
+	$this.global.nextSlider[0]即DOM对象不等于'endefined'时，调用$this.isPreload(slider, func);
+
+$this.isPreload(slider, func)详细：
+	全局变量$this.global.isLoading赋值为假。
+	如果全局变量$this.global.showSlider为真，元素el添加样式visibility为visible。
+
+	如果全局变量$this.option.isPreload为真：
+		创建两个变量:arr定义为数组, num定义为0。
+			如果参数slider的css样式background-image不等于'none',并且参数slider的css样式background-image的indexOf('url')不等于-1, 并且参数slider不包含storm-preloaded类和参数slider不包含storm-not-preload类时:
+				把参数slider的background-image匹配的url地址取出来赋值给arr数组，并把参数slider同时赋值给arr数组。
+
+			参数slider下查找img图片不存在storm-preloaded, storm-not-preloaded的类时:
+				如果$this.option.lazyLoad等于真时把$(this)用data()方法存储的src地址赋值给$this的src地址。并把src地址和$(this)存储在arr数组中。
+
+			查找参数slider下的所有元素:
+				如果$(this)的img图片css样式background-image不等于'none', 并且$(this)的css样式background-image的indexOf('url')不等于-1, 并且$(this)不包含storm-preloaded类和不包含storm-not-preload类时:
+				 	把$(this)的background-image匹配的url地址取出来赋值给arr数组，并把参数slider同时赋值给arr数组。
+
+		如果arr.length等于0时，调用$this.response(slider, func)。
+		如果arr.length大于0, 循环arr数组，把arr的url用data()方法存储在图像中，并当图像加载时，添加storm-preloaded类，num自加, 如果num等于arr数组的长度，就调用内部函数n(), 。链式赋值地址给图像。
+
+	上门所有条件语句不成立时最后调用$this.isPreload(slider, func);
+
+$this.response(slider, func)详细:
+	参数slider的样式visibility赋值为hidden, diaplay赋值为block。
+	调用$this.resizeSlider()函数。
+	把参数slider的子元素赋值给局部变量elChildren。
+	变量elChildren使用each方法循环: 设置$(this)的各种存储好的样式，不存在赋值为0。如果$(this)是img标签并且含有storm-bg类，把宽高和左外边距，上外边距重新赋值。如果$(this)含有storm-subLayer类，把top,left和字体大小，宽高和左外边距，上外边距重新赋值。
+	参数slider的样式visibility赋值为visible， display赋值为none。
+	最后调用参数func函数。
+
+$this.resizeSlider()详细:
+	如果元素el下发写storm-inner或者storm-inner-container类, 重新赋值宽高。
+	如果$this.global.curSlider是对象，判断$this.global.nextSlider是否对象。是对象即重新赋值宽高给$this.global.curSlider和$this.global.nextSlider对象，不是对象就查找元素el下的storm-slide类，存在即重新赋值给元素el的css样式宽高。
+
+$this.animate()详细:
+	元素el下如果发现storm-slide， 赋值$this.global.isAnimating为真。
+	$this.global.isLoading为假。
+	清除$this.global.slideTimer。
+	清除$this.global.changeTimer。
+	把$this.global.curSlider赋值给$this.global.stopSlider。
+	Jquery对象$this.global.nextSlider添加新类storm-animating。
+	创建局部变量并定义。
+	创建局部变量并赋值。
+
+	创建内部函数setClass(): 如果$this.global.stopSlider下找到storm-lay字母的类，是否有data数据tr，有的话就调用greensock文件中的kill()方法。并赋值css样式filter为none。
+	$this.global.curSlider赋值为$this.global.nextSlider。
+	$this.global.prevSliderIndex赋值为$this.global.curSliderIndex。
+	$this.global.curSliderIndex赋值为$this.global.nextSliderIndex。
+	$this.global.isPreload和$this.global.lazyLoad都为真时执行if语句。if语句： 创建局部变量sliderIndex并根据$this.global.curSliderIndex是否等于$this.global.sliderNum赋值为1：$this.global.curSliderIndex加一。$(el)下找到storm-slide的eq选择器sliderIndex下没有storm-preloaded类的img图像的集合循环：添加storm-preloaded类，并把img图像的data数据src赋值给循环的img图像。
+	$(el)找到storm-slide类时删除storm-acitve类。
+	$this.gloabl.curSliderIndex减一所在的元素添加storm-active类并删除storm-animating类。
+	$this.global.autosliderShow为真时，调用$this.timer()。
+	$this.global.isAnimating赋值为假。
+	$this.global.resize等于1时调用$this.response($this.global.curSlider, function(){ $this.global.resize = !1; });
+
+	创建内部函数curSliderAnimate(): Jquery对象$this.gloabl.curSlider调用delay().animate(), 调整CSS样式宽高,并在函数完成后调用setClass()。
+
+	创建内部函数nextSliderAnimate(): Jquery对象$this.global.nextSlider调用delay().animate(), 调整CSS样式宽高。
+
+	创建内部函数subLayerTweenTo():
+
+	创建内部函数subLayerTweenFormTo():
+
+	创建内部函数setTransitionType(type, contexts): 创建变量content，length，custom。如果type.indexOf('custom')等于-1，把$this.transitionDefaultData赋值给custom, 否则把$this.transitionCustomData赋值给custom。创建变量option并赋值为'3d'。
+	如果type.indexOf('2d')不等于-1，option赋值为'2d'。
+	如果contexts.indexOf('last')不等于-1, length赋值为custom[option].length - 1，content赋值'last'。
+	如果contexts.indexOf('all')不等于-1, length赋值为随机数，content赋值为'random from all'。
+	默认变量arr赋值为contexts.split(',')的结果，arrLength等于arr.length。length赋值为arr数组中存储的数字减一，contexts赋值为'random from specifile'。
+	最后调用内部函数play(type, options)。
+
+	创建内部函数checkTransitionType(): Jquery对象$this.global.nextSlider是否有data('transition2d')或data('transition3d')，根据不同的条件，传递不同的参数到setTransitionType(type, contexts)。
+
+	创建内部函数checkCustomTransitionType(): 全局变量$this.CustomTransition.indexOf('3d')不等于-1时, 调用setTransitonType('3d', $this.CustormTransition.spilt(':')[1]) 等于-1时验证：$this.CustomTransition.indexOf('3d')是否不等于-1, 等于-1时调用setTransition('2d', 'all')，不等于时调用setTransition('2d', $this.CustomTransition.split(':')[1]);
+
+	创建内部函数getEaseEffect(easing): 根据传递过来的easing不同而返回不同的符合greensock的easing格式。
+
+	创建内部函数play(type, option): 创建内部变量。计算行数row和col列数。创建一个存储行数和列数的积的数组arrDelay, 控制每一个tile的延迟执行时间。根据选定的效果创建sequence effect。如果Jquery对象$this.global.innerContainer存在，就清空子元素并添加CSS样式， 如果不存在就创建新的包含有storm-inner-container类的div标签附加到Jquery对象$this.global.inner下。获取每一个tile的宽和高。获取slide的宽高减去tile的宽高的结果，以待循环赋值tile宽高时放入。如果type等于'3d', 创建全局变量$this.global.totalDuration并赋值为行数和列数的积乘以option.tile.delay。如果type不等于'3d'，创建全局变量$this.global.totalDuration并赋值为行数和列数的积乘以option.tile.delay加上option.transition.duration乘以1000，并创建全局变量$this.global.curTiles和$this.global.nextTiles，分别赋值为添加新类到Jquery对象$this.global.innerContainer下的Jquery对象。循环col和row的积的次数, 创建内部Jquery对象$tiles添加到$this.global.innerContainer下并添加storm-inner-container-tiles类，如果type等于'3d' , 如果type等于'2d'，创建变量并赋值为计算好的位置宽高方向和transition效果等。如果slideType等于'slide', 添加Jquery对象$tiles到$this.global.curTiles下赋值给activeCurTiles和$this.global.nextTiles下并赋值给activeNextTiles，并新增一个包含storm-curtile类的div标签到$this.global.curTiles，否则只添加一个Jquery$tiles到$this.global.nextTiles。 添加一个包含类storm-nexttile类的div标签并添加CSS样式。调用greensock的to()和fromTo()方法使$this.global.nextTiles和$this.global.curTiles下的元素按照设定的效果运动。然后计算摆放activeCurTiles和activeNextTiles的位置。在slide运动时设置Jquery对象$this.global.curSlider和$this.global.nextSlider的CSS样式visibility为'hidden'，Jquery对象$this.global.innerContainer去掉storm-overflow-hidden类。调用subLayerTweenTo(num)，如果num等于0,num赋值为10。setTimeout()延迟num毫秒后对Jquery对象$this.global.curSlider的CSS样式width赋值为0。计算totalDuration的最新值，setTimeout()延迟totalDuration毫秒后, 执行验证$this.global.resize是否等于1, 等于时Jquery对象$this.global.innerContainer.empty(), 并调用$this.response(slider, func)。调用subLayerTweenFormTo()，Jquery对象$this.global.curSlider的CSS样式width和height重新赋值。Jquery对象$this.global.innerContainer添加storm-overflow-hidden类，如果$this.global.curSlider存在，$this.global.curSlider的CSS样式visibility赋值为'visible'，display赋值为'none'。如果$this.global.ie78为真, Jquery对象$this.global.curSlider的CSS样式display赋值为'block', 调用setClass(), 否则Jquery对象$this.global.curSlider.fadeIn(500, function() { setClass(); })。 如果$this.global.curSlider不存在，直接调用setClass()。
+
+	创建内部函数initPlay(): Jquery对象$this.global.nextSlider找到类以storm-lay开头的，循环赋值CSS样式visibility为'hidden'。$this.global.sliderTop赋值为元素el的offset().top。window加载时，$this.global.sliderTop赋值为元素el的offset().top。创建函数i(), 按照条件判断是否调用$this.start()和subLayerTweenFormTo()。window的scroll触发时$this.global.firstSliderAnimated为假就调用函数i()。调用函数i()。
+
+	如果$this.global.nextSlider有transitionType就创建内部变量transitonType赋值为'new',否则赋值为'old'。
+	$this.option.slideTransition对象为真，transitionType赋值为'force'。
+	如果$this.option.animateFirstSlide为真且$this.global.firstSlideAnimated为假时：$this.global.sliderNum等于1,不执行任务。$this.global.sliderNum不等于时，全局变量$this.global.setClass赋值为setTimeout(function(){ setClass(); }); 如果$this.option.startInViewport为真，调用initPlay(), 为假调用subLayerTweenFormTo()。$this.gloabl.nextSlider的CSS样式宽高重新赋值。$this.global.ie78为假时$this.global.nextSlider下找到storm-bg类赋值CSS样式display为'none', $this.global.Isloading赋值为假。如果$this.option.animateFirstSlide为真且$this.global.firstSlideAnimated为真时，判断transitionType的值, 等于'old'时，计算$this.global.innerContainer，存在$this.global.innerContainer.empty(), 调用curSliderAnimate(), subLayerTweenTo(), nextSliderAnimate(), subLayerTweenFormTo()。等于'new'时，$this.CustomTransition不等于'undefined'时调用checkCustomTransitionType(), 否则调用checkTransitionType()。等于'force'时，调用play(type, options);

@@ -1,0 +1,191 @@
+/* Less Variables */
+a {
+  text-decoration: none;
+}
+.btn {
+  display: inline-block;
+  color: #ffffff;
+  background: #00a0d2;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 20px !important;
+  cursor: pointer;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: normal;
+  border: none;
+  box-shadow: 0 2px 0 #00799f;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: #06c4ff;
+  box-shadow: 0 2px 0 #00b3eb;
+}
+.btn:focus {
+  outline: none;
+  background-color: #06c4ff;
+  box-shadow: 0 2px 0 #00b3eb;
+  color: #ffffff;
+}
+.storm-slider {
+  /* Slider UI */
+}
+.storm-slider .slider_list h2 {
+  font: normal normal normal 14px/16px Arial serif;
+}
+.storm-slider .tablenav {
+  margin-bottom: 20px;
+  height: 34px;
+}
+.storm-slider .tablenav .storm-search-value {
+  float: left;
+  margin-right: 5px;
+}
+.storm-slider .tablenav .storm-search-value label {
+  margin-right: 5px;
+}
+.storm-slider .tablenav .storm-search-value input[type="search"] {
+  height: 32px;
+}
+.storm-slider .tablenav .storm-search-reset {
+  float: left;
+}
+.storm-slider .storm-list-table {
+  width: 97%;
+  border-radius: 3px;
+  border: 1px solid #d7d7dd 7;
+  border-spacing: 0;
+  box-shadow: 0 0 1px #d7d7dd 7;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+.storm-slider .storm-list-table thead tr th {
+  padding: 20px;
+  font: normal normal normal 14px/16px Arial serif;
+  text-align: center;
+  border-bottom: 1px solid #d7d7dd 7;
+}
+.storm-slider .storm-list-table thead tr th:first-child {
+  text-align: left;
+}
+.storm-slider .storm-list-table tbody tr {
+  line-height: 50px;
+  height: 50px;
+}
+.storm-slider .storm-list-table tbody tr:hover td {
+  background: #ffffff;
+}
+.storm-slider .storm-list-table tbody tr .storm-empty-slider {
+  text-align: center !important;
+}
+.storm-slider .storm-list-table tbody tr td {
+  border-left: 1px solid #d7d7dd 7;
+  border-bottom: 1px solid #d7d7dd 7;
+  border-top: 0 solid #ffffff;
+  background: linear-gradient(to bottom right, #f8f8f8, #f6f6f6);
+  vertical-align: middle;
+  text-align: center;
+  font: normal normal normal 14px/16px Arial serif;
+}
+.storm-slider .storm-list-table tbody tr td:first-child {
+  padding-left: 20px;
+  text-align: left;
+  border-left: 0;
+}
+.storm-slider .storm-action-btn-list {
+  margin-top: 20px;
+}
+.storm-slider .storm-action-btn-list div {
+  float: left;
+  margin-right: 5px;
+}
+.storm-slider #storm-screen-options-form input[type="number"] {
+  width: 50px;
+}
+.storm-importexportContainer {
+  position: fixed;
+  top: 5%;
+  left: 260px;
+  width: 900px;
+  height: 90%;
+  margin: 0 auto;
+  border-radius: 3px;
+  background-color: #ffffff;
+  z-index: 9999992;
+}
+.storm-importexportContainer .storm-export-form-container {
+  max-height: 270px;
+  overflow-y: auto;
+}
+.storm-importexportContainer .storm-remove-importexport {
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid #d7d7dd 7;
+}
+.storm-importexportContainer .storm-remove-importexport span {
+  font-size: 24px;
+}
+.storm-importexportContainer .storm-remove-importexport .storm-remove-importexport-btn {
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.storm-importexportContainer .storm-lable-export {
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid #d7d7dd 7;
+}
+.storm-importexportContainer .storm-lable-export span {
+  font-size: 24px;
+}
+.storm-importexportContainer .storm-export-btn {
+  padding: 10px 0 10px 20px;
+}
+.storm-importexportContainer .storm-export-btn .storm-export-presetslider-btn {
+  margin-left: 20px;
+}
+.storm-importexportContainer h3 {
+  padding-left: 30px;
+}
+.storm-importexportContainer .storm-improtContainer {
+  padding-top: 20px;
+}
+.storm-importexportContainer .storm-improtContainer input[type="file"] {
+  border: 1px solid #d7d7dd 7;
+}
+.storm-importexportContainer .storm-improtContainer .storm-import-btn {
+  margin-left: 20px;
+  vertical-align: top;
+}
+.storm-importexportContainer table {
+  width: 100%;
+  padding: 0 30px 20px;
+  border-bottom: 1px solid #d7d7dd 7;
+}
+.storm-importexportContainer table thead tr th {
+  padding: 10px 0;
+}
+.storm-importexportContainer table thead tr th:first-child {
+  float: left;
+}
+.storm-importexportContainer table tbody tr {
+  height: 30px;
+  border-spacing: 0;
+}
+.storm-importexportContainer table tbody tr:nth-child(even) {
+  background-color: #d7d7dd 7;
+}
+.storm-importexportContainer table tbody tr td {
+  text-align: center;
+}
+.storm-importexportContainer table tbody tr td:first-child {
+  text-align: left;
+}
+.storm-importexport-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  z-index: 9999991;
+  opacity: .8;
+}
