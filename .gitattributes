@@ -1,3 +1,2 @@
-*.php linguist-language=php
 js/* linguist-vendored
-css/* linguist-documentation
+
